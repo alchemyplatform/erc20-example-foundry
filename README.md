@@ -1,66 +1,64 @@
-## Foundry
+# ERC-20 Example with Foundry
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This simple ERC20 based off the tutorial: https://www.youtube.com/watch?v=fNMfMxGxeag
 
-Foundry consists of:
+It is used to demonstrate the power of gasless minting using Account Abstraction.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## Build and Test
 
-## Documentation
+Reference: https://book.getfoundry.sh/projects/working-on-an-existing-project
 
-https://book.getfoundry.sh/
+These are commands you can use to start developing:
 
-## Usage
-
-### Build
-
-```shell
-$ forge build
+```
+forge install --no-commit
+forge build
+forge test
 ```
 
-### Test
+Reference: https://book.getfoundry.sh/projects/creating-a-new-project
 
-```shell
-$ forge test
+These are the commands I used to create this project on this repo from scratch. Ignore flags as necessary:
+
+```
+mkdir <YOUR-PROJECT-FOLDER>
+cd <YOUR-PROJECT-FOLDER>
+forge init --force
+forge install openzeppelin/openzeppelin-contracts
+forge build
+forge test
 ```
 
-### Format
+## Deploy
 
-```shell
-$ forge fmt
+Reference: https://book.getfoundry.sh/forge/deploying
+
+1. Set your environment variables by running:
+
+```
+export ALCHEMY_RPC_URL=<YOUR-ALCHEMY-RPC-URL>
+export WALLET_PRIVATE_KEY=<YOUR-WALLET-PRIVATE-KEY>
+export ETHERSCAN_API_KEY=<YOUR-ETHERSCAN-API-KEY>
 ```
 
-### Gas Snapshots
+2. Deploy and Verify the Contract using:
 
-```shell
-$ forge snapshot
+```
+forge create <CONTRACT-NAME> --rpc-url=$ALCHEMY_RPC_URL \
+    --private-key=$WALLET_PRIVATE_KEY \
+    --etherscan-api-key=$ETHERSCAN_API_KEY \
+    --verify
 ```
 
-### Anvil
+If you need testnet tokens for the EOA wallet deploying this contract, use: https://sepoliafaucet.com.
+If you need an etherscan API key, use: https://etherscan.io/myapikey.
 
-```shell
-$ anvil
+If successfully deployed, you will see the deploying wallet's address, the contract's address as well as the transaction hash printed to your terminal.
+
+Don't for get to remove the sensitive variables you exported:
+
 ```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+unset ALCHEMY_RPC_URL
+unset WALLET_PRIVATE_KEY
+unset ETHERSCAN_API_KEY
 ```
