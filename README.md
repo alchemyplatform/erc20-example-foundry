@@ -1,6 +1,6 @@
 # ERC-20 Example with Foundry
 
-This simple ERC20 based off the tutorial: https://www.youtube.com/watch?v=fNMfMxGxeag
+This is a simple ERC-20 token based off the tutorial: https://www.youtube.com/watch?v=fNMfMxGxeag
 
 It is used to demonstrate the power of gasless minting using Account Abstraction.
 
@@ -55,7 +55,7 @@ If you need an etherscan API key, use: https://etherscan.io/myapikey.
 
 If successfully deployed, you will see the deploying wallet's address, the contract's address as well as the transaction hash printed to your terminal.
 
-Don't for get to remove the sensitive variables you exported:
+Don't forget to remove the sensitive variables you exported:
 
 ```
 unset ALCHEMY_RPC_URL
